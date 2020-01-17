@@ -1,0 +1,52 @@
+<h1> Wellcome to Hell - {{title | uppercase}}</h1>
+
+<app-boton></app-boton>
+
+<div class="row">
+  <!-- listado -->
+  <div class="col">
+          <ul class="list-group">
+              <li *ngFor="let p of productos" 
+                  (click)="seleccionarProducto(p)"
+                  class="list-group-item {{ (p==pSeleccionado ) ? 'active' : ''}}">
+                  <b>{{p.nombre}}</b> {{p.precio}}€
+              </li>
+          </ul>
+  </div>
+  <!-- detalle -->
+  <div class="col">
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="{{pSeleccionado.imagen}}" alt="imagen {{pSeleccionado.nombrecd}}">
+    <div class="card-body">
+      <div class="row">
+          <div class="col">
+              <h5 class="card-title">{{pSeleccionado.nombre}} </h5>
+          </div>
+          <div class="col">
+            <span *ngIf="!pSeleccionado.gluten" class="badge badge-pill badge-success">Sin gluten</span>
+            <span *ngIf="pSeleccionado.gluten"class="badge badge-pill badge-danger">Con gluten</span>
+          </div>
+      </div>
+      <p class="card-text"> <b>Precio: </b> {{pSeleccionado.precio}}</p>
+      <p class="card-text"> <b>Categoria: </b> {{pSeleccionado.categoria.nombre}}</p>
+    </div>
+    <div class="card-body">
+      <h5  class="card-title"> Historico </h5>
+      <table>
+        <thead>
+          <tr>
+            <td> Fecha </td>
+            <td class="ml-4"> Precio </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let h of pSeleccionado.historico">
+            <td> {{h.fecha}}</td>
+            <td> {{h.precio}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>

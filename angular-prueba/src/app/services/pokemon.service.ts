@@ -12,13 +12,21 @@ export class PokemonService {
 
    }
 
-   getPokemon(){
-
-    let url = "https://pokeapi.co/api/v2/pokemon/1";
-
-    console.trace('PokemonService.constructor ' + url);
-
+   getPokemon( nombre: string ): Observable<any> {
+    const url = `https://pokeapi.co/api/v2/pokemon/${nombre}/`;
+    console.trace('PokemonService getPokemon ' + url);
     return this.http.get(url);
+  }
 
-   }
+  getAll() {
+    throw new Error("Method not implemented.");
+  }
+  getById( id: number ) {
+    throw new Error("Method not implemented.");
+  }
+
+  getByName( nombre: string) {
+    throw new Error("Method not implemented.");
+  }
+
 }

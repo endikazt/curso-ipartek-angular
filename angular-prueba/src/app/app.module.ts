@@ -11,6 +11,7 @@ import { ArraysComponent } from './paginas/arrays/arrays.component';
 import { JuegoComponent } from './paginas/juego/juego.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
+import { PokemonsRestComponent } from './paginas/pokemons-rest/pokemons-rest.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
     ArraysComponent,
     JuegoComponent,
     ProductosComponent,
-    NavbarComponent
+    NavbarComponent,
+    PokemonsRestComponent
   ],
   imports: [
     BrowserModule,

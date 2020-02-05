@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,8 @@ import { JuegoComponent } from './paginas/juego/juego.component';
 import { ProductosComponent } from './paginas/productos/productos.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { PokemonsRestComponent } from './paginas/pokemons-rest/pokemons-rest.component';
+import { EstilosComponent } from './paginas/estilos/estilos.component';
+import { DirectivasComponent } from './paginas/directivas/directivas.component';
 
 @NgModule({
   declarations: [
@@ -23,11 +26,14 @@ import { PokemonsRestComponent } from './paginas/pokemons-rest/pokemons-rest.com
     JuegoComponent,
     ProductosComponent,
     NavbarComponent,
-    PokemonsRestComponent
+    PokemonsRestComponent,
+    EstilosComponent,
+    DirectivasComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule, // Modulo para usar formularios
     AppRoutingModule
   ],
   providers: [],

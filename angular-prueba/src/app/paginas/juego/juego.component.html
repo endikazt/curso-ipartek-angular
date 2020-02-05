@@ -1,1 +1,31 @@
-<p>juego works!</p>
+<div class="row">
+    <div class="col">
+        <div class="row flex-column">
+            <div class="col">
+                <label>Tu nombre: {{jugador}}</label>
+                <input type="text" style="margin-bottom: 15px; margin-left: 15px; margin-right: 20px;" [(ngModel)]='jugador'>
+                <button (click) = "empezarJuego()"> ¡Jugar! </button>
+            </div>
+            <div class="col d-flex justify-content-center">Puntuacion: {{puntos}}</div>
+            <div class="d-flex justify-content-center">
+                <button [disabled] = "!disable" style="margin-top: 20px;" (click) = "contarClicks()"> Dale </button>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <p> Ranking </p>
+        <ul class="list-group">
+            <li *ngFor="let element of ranking | keyvalue ">
+                {{element.key}} --> {{element.value}}
+            </li>
+        </ul>
+    </div>
+    <div class="col">
+        <p> Ranking ordenado </p>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let element of rankingOrdenado">
+                {{element}}
+            </li>
+        </ul>
+    </div>
+</div>

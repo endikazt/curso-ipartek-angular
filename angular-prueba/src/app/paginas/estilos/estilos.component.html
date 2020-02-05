@@ -1,0 +1,36 @@
+<h1> SASS </h1>
+
+<p> SASS es un precompilador de css y soporta dos formatos <code>.sass</code> y <code>.scss</code> y nos genera un <code>.css</code></p>
+<p> Vamos a usar el formato <code>.scss</code> porque es el mas sencillo de aprender y soporta que escribamos en <code>.css</code></p>
+<p> Existen otros precompiladores como <code>LESS</code> y <code> STYLUS </code></p>
+<p><a href="https://sass-lang.com" target="_blank"> Documentacion oficial </a></p>
+
+<span class="borde10">10</span>
+<span class="borde50">50</span>
+
+<button class="boton-verde">Boton verde</button>
+<button class="boton-rojo"> Boton rojo </button>
+
+<button (click) = "contarClicks()"> Dale </button>
+<p>{{numeroClicks}}</p>
+
+
+<p> Ejemplo de porpiedad siempre con [] y las variables sin llaves</p>
+<p> La propieda de <code>hidden</code> es de Angular y tambien podriamos haber usado <code>ngIf</code></p>
+<p [hidden]="!visible"> Adios con hidden </p>
+<p *ngIf="visible"> Adios con ngIf</p>
+<button (click) = "decirAdios()"> Decir adios </button>
+
+<hr>
+
+<p>Podemons declara propiedades al vuelo, sin tener que definirlar en el Componente </p>
+
+<div [class]="claseSeleccionada">COLOR que cambia al pulsar botnoes</div>
+
+<button (click)="claseSeleccionada = 'rojo'"> Color rojo</button>
+<button (click)="claseSeleccionada = 'verde'"> Color verde </button>
+
+<p> Para usar banana-in-a-box recordad importar el modulo de <code>FormsModule</code></p>
+
+<label>Nombre: {{jugador}}</label>
+<input type="text" style="margin-left: 50px;" [(ngModel)]='jugador'>

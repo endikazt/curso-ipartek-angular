@@ -10,10 +10,11 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class PokemonsRestComponent implements OnInit {
 
   pokemon : Pokemon;
+  mensaje : string;
 
   constructor(private pokemonService: PokemonService) { 
     console.trace('PokemonRestComponente contructor');
-    this.pokemon = new Pokemon(1,'','https://i.etsystatic.com/12696278/r/il/bb21a8/1868980486/il_570xN.1868980486_d6zs.jpg');
+    this.pokemon = new Pokemon(1,'','https://i.etsystatic.com/12696278/r/il/bb21a8/1868980486/il_570xN.1868980486_d6zs.jpg','');
     console.debug(this.pokemon);
   }
 
@@ -34,9 +35,29 @@ export class PokemonsRestComponent implements OnInit {
         this.pokemon.nombre = data.name;
         this.pokemon.imagen = data.sprites.front_default;
         
+        this.mensaje = "Pokemon cargado desde https://pokeapi.co"
+
+        //Conseguir su habilidad
+
+        this.pokemon.habilidad = data.abilities[0].ability.name;
+
+        this.pokemonService.getHabilidad(this.pokemon.habilidad).subscribe(
+          data_habilidad => {
+            console.debug('Peticion correcta data %o', data_habilidad)
+            this.pokemon.habilidad = data_habilidad.names.filter(el => el.language === "es").name;
+          },
+          error_habilidad => {
+            console.warn('Peticion erronea data %o', error_habilidad)
+          },
+          () =>{
+            console.trace('esto se hace siempre');
+          }
+        );
+
       },
       error =>{
         console.warn('Peticion erronea data %o', error)
+        this.mensaje = "No existe el pokemon %o"
       },
       () =>{
         console.trace('esto se hace siempre');

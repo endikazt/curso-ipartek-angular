@@ -1,0 +1,100 @@
+
+//Soportar comentarios de linea, los cuales luego no se ven en .CSS
+
+//Variables
+
+$color_pink : #ffc0cb;
+$color_green: #00FF00;
+$color_black: #000;
+
+h1 {
+
+    color: $color_pink; //usamos variables
+
+}
+
+//Nesting
+
+
+p {
+
+    code {
+
+        color: $color_green;
+        background-color: $color_black;
+        padding: 2px 3px;
+
+    }
+
+}
+
+//Mixing o funciones para reutilizar
+
+@mixin redondear($radio, $color) {
+    border-radius: $radio;
+    border: 1px solid $color;
+    padding: 10px;
+    margin: 10px;
+}
+
+.borde10 {
+
+    @include redondear(10%, $color_pink)
+
+}
+
+.borde50 {
+
+    @include redondear(50%, $color_green)
+    
+}
+
+//Herencia
+
+%boton {
+
+    @include redondear(25%, $color_black);
+
+}
+
+.boton-verde {
+
+    @extend %boton;
+
+    color: $color_green;
+
+    &:hover {
+
+        background-color: $color_green;
+        color: white;
+
+    }
+
+}
+
+.boton-rojo {
+
+    @extend %boton;
+
+    color: red;
+
+    &:hover {
+
+        background-color: red;
+        color: white;
+
+    }
+
+}
+
+.rojo {
+
+    color: red;
+
+}
+
+.verde {
+
+    color: green;
+
+}

@@ -3,12 +3,14 @@ export class Pokemon {
     private _id: number;
     private _nombre: string;
     private _imagen: string;
+    private _habilidad: string;
 
-    constructor(id: number, nombre: string, imagen: string){
+    constructor(id: number, nombre: string, imagen: string, habilidad: string){
 
         this._id = id;
         this.nombre = nombre;
         this._imagen = imagen;
+        this._habilidad = habilidad;
 
     }
 
@@ -32,6 +34,13 @@ export class Pokemon {
     }
     public set imagen(value: string) {
         this._imagen = (value !== undefined && value !== '')?  value : 'https://i.etsystatic.com/12696278/r/il/bb21a8/1868980486/il_570xN.1868980486_d6zs.jpg';
+    }
+
+    public get habilidad(): string {
+        return this._habilidad;
+    }
+    public set habilidad(value: string) {
+        this._habilidad = value;
     }
 
 }

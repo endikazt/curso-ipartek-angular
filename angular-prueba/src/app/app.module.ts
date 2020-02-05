@@ -15,6 +15,10 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { PokemonsRestComponent } from './paginas/pokemons-rest/pokemons-rest.component';
 import { EstilosComponent } from './paginas/estilos/estilos.component';
 import { DirectivasComponent } from './paginas/directivas/directivas.component';
+import { HelloDirective } from './directives/hello.directive';
+import { SubrayarDirective } from './directives/subrayar.directive';
+import { FiltrosComponent } from './paginas/filtros/filtros.component';
+import { AnimalesPipe } from './pipes/animales.pipe';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { DirectivasComponent } from './paginas/directivas/directivas.component';
     NavbarComponent,
     PokemonsRestComponent,
     EstilosComponent,
-    DirectivasComponent
+    DirectivasComponent,
+    HelloDirective,
+    SubrayarDirective,
+    FiltrosComponent,
+    AnimalesPipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<h2> Filtros </h2>
+<h3> Ejemplos de filtros de angular </h3>
+<a href="https://angular.io/api?type=pipe" target="_blank">Documentacion oficial </a>
+
+<pre>{{coche | json}}</pre>
+<pre>{{coche.nombre | uppercase}}</pre>
+<pre>{{coche.nombre | lowercase}}</pre>
+<pre>{{coche.precio | currency:'EUR': '':'2.2-2' }} &euro;</pre>
+
+<h2> Filtros propios </h2>
+<a href="https://angular.io/guide/pipes" target="_blank">Documentacion oficial </a>
+<br>
+<input type ="search" [(ngModel)]="busqueda" placeholder="busca un animal">
+<select>
+    <option *ngFor="let tipo of tipos | keyvalue" value="{{tipo.key}}"> {{tipo.value}}</option>
+</select>
+
+<ul class="list-group">
+    <li *ngFor="let animal of animales | animalesFiltro : busqueda" class="list-group-item">
+        <img src="{{animal.Imagen}}">
+        <div>
+            <p class="nombre">{{animal.Nombre}}</p>
+            <p class="observaciones">{{animal.Observacion}}</p>
+        </div>
+    </li>
+</ul>

@@ -1,1 +1,32 @@
-<p>directivas works!</p>
+<h2> Directivas </h2>
+
+<p> Hay tres tipo de directivas en Angular: </p>
+<dl>
+    <dt>Components</dt> <dd>son directivas con una plantilla de html.</dd>
+    <dt>Estructurales</dt><dd>cambian el DOM añdiendo o removiendo elementos, por ejemplo *ngIf.</dd>
+    <dt>Attribute directive</dt><dd>cambian la apariencia de un elemento del DOM, por ejemplo NgStyle.</dd>
+</dl>
+
+<p> Podemos crear nuestra porpias directivas usando <code> ng g d directives/nombreDirectiva </code></p>
+
+<p appHello="teal"> En esta etiqueta estamos usando nuestra directiva <code>appHello</code></p>
+<br>
+<p appHello="pink"> Usamos de nuevo el <code>appHello</code></p>
+<br>
+<p>
+    <input type="color" [(ngModel)] = "colorSeleccionado">
+    Elige un color personalizado
+</p>
+
+<br>
+<p appSubrayar subrayar="red"> Usamos de nuevo el <code>appSubrayar</code></p>
+<br>
+<p appSubrayar [subrayar]="'green'"> Usamos de nuevo el <code>appSubrayar</code></p>
+<br>
+<p appSubrayar [subrayar]="colorSeleccionado"> Usamos de nuevo el <code>appSubrayar</code></p>
+<br>
+<select id="colores">
+    <option value="pink"> Rosa </option>
+    <option value="green"> Verde </option>
+    <option value="red"> Rojo </option>
+</select>

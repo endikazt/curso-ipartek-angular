@@ -10,17 +10,24 @@
 <h2> Filtros propios </h2>
 <a href="https://angular.io/guide/pipes" target="_blank">Documentacion oficial </a>
 <br>
-<input type ="search" [(ngModel)]="busqueda" placeholder="busca un animal">
-<select>
-    <option *ngFor="let tipo of tipos | keyvalue" value="{{tipo.key}}"> {{tipo.value}}</option>
+<input type="search" [(ngModel)]="busqueda" placeholder="buscar por nombre">
+             
+<select [(ngModel)]="tipo">
+    <option selected>TODOS</option>
+    <option *ngFor="let t of tipos | keyvalue" value="{{t.key}}">{{t.value}}</option>
 </select>
-
+<br>
+            
 <ul class="list-group">
-    <li *ngFor="let animal of animales | animalesFiltro : busqueda" class="list-group-item">
-        <img src="{{animal.Imagen}}">
-        <div>
-            <p class="nombre">{{animal.Nombre}}</p>
-            <p class="observaciones">{{animal.Observacion}}</p>
-        </div>
-    </li>
+
+    <li *ngFor="let animal of animales | animalesFiltro:busqueda:tipo"
+        class="list-group-item">
+        
+            <img src="{{animal.Imagen}}" class="circle" /> 
+            <div>
+                <p class="nombre">{{animal.Nombre}}</p>            
+                <p class="observacion">{{animal.Observacion}}</p>
+            </div>    
+    </li>   
+
 </ul>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GLOBAL } from '../global';
 
 // Componente principal que se encarga de arrancar la app
 
@@ -19,6 +20,8 @@ export class AppComponent {
 
   //variable
   title = 'angular-prueba';
+
+  global = GLOBAL;
 
   productos = [{
 		"id": 1,

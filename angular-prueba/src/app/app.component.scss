@@ -1,6 +1,52 @@
+
+header {
+
+    width: 100%;
+    min-height: 10vh;
+    padding-left: 6em;
+    padding-right: 6em;
+    background-color: #f8f9fa;
+
+}
+
+main {
+
+    width: 100%;
+    min-height: 80vh;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+}
+
+footer
+{
+    width: 100%;
+    padding: 20px 35px 10px 95px;
+    bottom: 0%;
+    background-color: teal;
+    min-height: 10vh;
+
+    .col {
+
+        p {
+
+            color : white;
+
+        }
+
+        a {
+
+            color : white;
+
+        }
+
+    }
+}
+
 h1 {
 
     color: teal;
+    margin-bottom: 1em;
 
 }
 

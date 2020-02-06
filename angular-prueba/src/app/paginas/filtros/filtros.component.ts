@@ -11,6 +11,7 @@ export class FiltrosComponent implements OnInit {
   coche : any;
   animales : Array<any>;
   tipos: Map<string, string>;
+  tipo : string;
 
   constructor() { 
     console.trace("FiltrosComponent constructor");

@@ -12,13 +12,24 @@ export class AnimalesPipe implements PipeTransform {
     console.debug(tipo);
     console.debug("------------------------------");
 
-    busqueda = busqueda.toUpperCase();
+    let resultado = datos;
 
-    const resultado = datos.filter( (el) => {
-       console.debug(el);
-       const nombre = el.Nombre.toUpperCase();
-       return nombre.includes(busqueda);
-    });
+    // filtrar por tipo
+    if ( tipo && tipo !== 'TODOS' ) {
+      //TODO arreglar esto para que funcione el filtro por tipo
+      resultado = resultado.filter( (el) => el.Tipo === tipo.toUpperCase());
+    }
+
+    // filtrar por nombre
+    if ( busqueda && '' !== busqueda.trim() ) {
+
+      busqueda = busqueda.toUpperCase();
+      resultado = resultado.filter( (el) => {
+        console.debug(el);
+        const nombre = el.Nombre.toUpperCase();
+        return nombre.includes(busqueda);
+      });
+    }
 
     return resultado;
 

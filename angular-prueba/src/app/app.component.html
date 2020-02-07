@@ -14,9 +14,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <div class="row d-flex justify-content-between">
-        <div class="col"><p>{{global.usuario}}</p></div>
+        <div class="col">
+            <a href="{{global.github}}" target="_blank" class="text-white mr-2"><i class="fab fa-github"></i></a>   
+            <span class="text-white">{{global.usuario}}</span>
+        </div>
         <div class="col d-flex justify-content-center"><p>angular-prueba v{{global.version}}</p></div>
-        <div class="col d-flex justify-content-center"><a href="global.github">Github</a></div>
+        <div class="col" ></div>
     </div>
 
 </footer>

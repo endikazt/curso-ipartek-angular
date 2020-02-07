@@ -38,6 +38,11 @@ export const RUTAS =  [
         'ruta' : '/filtros',
         'nombre' : 'Filtros',
         'icono' : ''
+    },
+    {
+        'ruta' : '/recetas',
+        'nombre' : 'Recetas',
+        'icono' : ''
     }
 
 ];

@@ -1,0 +1,39 @@
+<div class="row mb-3">
+
+    <div class="col">
+        <a href="#">Cocinar nueva Receta</a>
+    </div>
+
+    <div class="col">
+        Recetas Sin Gluten
+        <input type="checkbox" [(ngModel)]="checkGluten">
+        <div class="input-group">
+            <input type="search" [(ngModel)]="busqueda" class="form-control" placeholder="Busca receta por nombre, cocinero o ingredientes">
+            <div class="input-group-append"><span class="input-group-text"><span class="fas fa-search"></span></span></div>            
+        </div>
+
+    </div>
+
+</div>
+<!-- /1º row -->
+
+<div class="row">
+    <div class="col-4">
+        <ul class="list-group">
+            <li *ngFor="let receta of recetas | recetaFiltro : checkGluten : busqueda " 
+                (click)="recetaSeleccionada = receta"
+                class="list-group-item receta-lista-nombre {{ (receta == recetaSeleccionada ) ? 'active': ''}}">{{receta.nombre}}</li>            
+          </ul>
+    </div>
+    <!-- listado -->
+    <div class="col-8">
+        <div class="card" style="">
+            <img src="{{recetaSeleccionada.foto}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              {{ recetaSeleccionada | json }}
+            </div>
+          </div>
+    </div>
+    <!-- detalle -->
+</div>
+<!-- /2º row -->

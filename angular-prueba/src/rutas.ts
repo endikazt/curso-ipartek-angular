@@ -43,6 +43,11 @@ export const RUTAS =  [
         'ruta' : '/recetas',
         'nombre' : 'Recetas',
         'icono' : ''
+    },
+    {
+        'ruta' : '/tareas',
+        'nombre' : 'Tareas',
+        'icono' : ''
     }
 
 ];

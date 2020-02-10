@@ -1,0 +1,40 @@
+li {
+
+    span.titulo {
+
+        font-weight: 500;
+
+    }
+
+    span.completada {
+
+        text-decoration: line-through;
+        font-weight: 100;
+        color: grey;
+
+    }
+
+}
+
+.container-fondo-tareas {
+
+    background-image: url(../../../assets/images/fondo-tareas.jpg);
+    padding: 3em;
+
+}
+
+
+.container-lista-tareas {
+
+    background-color: whitesmoke;
+    opacity: 90%;
+    margin: auto;
+
+    
+}
+
+.button {
+
+    width: 100%;
+
+}

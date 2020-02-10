@@ -1,34 +1,21 @@
 {
-  "tareas": [
+  "tareas" : [
     {
-      "id": 3,
-      "titulo": "Tomar cafe y descanso a las 10:30",
-      "completada": true
-    },
-    {
-      "id": 4,
-      "titulo": "Irse a casita",
-      "completada": false
-    },
-    {
-      "id": 5,
-      "titulo": "Mejorar UL, mostrando mensajes",
-      "completada": true
-    },
-    {
-      "id": 6,
-      "titulo": "El eliminar mostrar al usuario ID y titulo de la tarea",
-      "completada": true
-    },
-    {
-      "id": 7,
-      "titulo": "Mejorar diseño",
-      "completada": true
-    },
-    {
-      "id": 8,
-      "titulo": "Todas las tareas centaras y con una imagen semitransparente",
-      "completada": true
+      "id" : 1,
+      "titulo" : "Crear datos en json",
+      "completado" : true
+    },{
+      "id" : 2,
+      "titulo" : "Crear modelo con interfaz",
+      "completado" : false
+    },{
+      "id" : 3,
+      "titulo" : "Tomar cafe y descanso a las 10:30",
+      "completado" : false
+    },{
+      "id" : 4,
+      "titulo" : "Crear provider",
+      "completado" : false
     }
   ],
   "colores": [

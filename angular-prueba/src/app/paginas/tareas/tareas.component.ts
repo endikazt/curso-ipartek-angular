@@ -12,10 +12,14 @@ export class TareasComponent implements OnInit {
   tareas : Array<Tarea>;
   tituloNuevo : any;
   mensaje: string;
+  modoEdicion: boolean;
 
   constructor(private serviceTareas : TareasService) {
     console.trace('TareasComponent contructor');
     this.tareas = []; // inicialSizar el array
+    this.tituloNuevo = "";
+    this.mensaje = "";
+    this.modoEdicion = false;
 
    } // TareasComponent constructor
 
@@ -44,9 +48,11 @@ export class TareasComponent implements OnInit {
 
       console.trace('Confirmada eliminacion de ' + tarea.id);
 
-      this.mensaje = 'Tarea ' + tarea.id + ' "' + tarea.titulo + '" eliminada';
-
-      this.serviceTareas.eliminar(tarea.id).subscribe( data => this.cargarTareas());
+      this.serviceTareas.eliminar(tarea.id).subscribe( data => {
+        
+        this.mensaje = 'Tarea ' + tarea.id + ' "' + tarea.titulo + '" eliminada';
+        
+        this.cargarTareas()});
 
     } else {
 
@@ -66,15 +72,17 @@ export class TareasComponent implements OnInit {
 
       console.trace("No hay nada escrito");
 
-      alert("No puedes crear una tare vacia >:(");
+       this.mensaje = "No puedes crear una tare vacia >:(";
 
     } else {
+
+    this.mensaje = "";
 
     nuevaTarea.titulo = this.tituloNuevo;
 
     console.debug(nuevaTarea);
 
-    this.serviceTareas.crear<Tarea>(nuevaTarea).subscribe( data => {
+    this.serviceTareas.crear(nuevaTarea).subscribe( data => {
       console.trace('Nueva tarea creada en json server %o . Se reinicia tituloNuevo', data);
       this.tituloNuevo = "";
       this.cargarTareas()});
@@ -91,5 +99,11 @@ export class TareasComponent implements OnInit {
       });
 
   }
+
+  cambiarTitulo(tarea: Tarea): void {
+    console.debug('loose focus para cambiar titulo %o', tarea);
+    this.serviceTareas.modificar(tarea).subscribe( () => this.cargarTareas() );
+
+  }// cambiarTitulo
 
 } // TareasComponent

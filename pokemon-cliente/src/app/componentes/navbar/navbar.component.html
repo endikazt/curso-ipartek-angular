@@ -6,10 +6,10 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active"  *ngFor="let ruta of rutas">
-            <a [routerLink]="[ruta.ruta]" routerLinkActive="router-link-active" class="nav-link">{{ruta.nombre}}</a>
-        </li>
-        <!-- Rutas si el usuario esta loegado o no -->
+        <li class="nav-item active" >
+            <a [routerLink]="'/'" routerLinkActive="router-link-active" class="nav-link">Inicio</a>
+          </li>
+        <!-- Rutas si el usuario esta loegado o no 
         <li class="nav-item active" >
           <a *ngIf="!usuarioService.estaLogeado()" [routerLink]="'/login'" routerLinkActive="router-link-active" class="nav-link">Iniciar sesion</a>
         </li>
@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item active" >
           <a *ngIf="usuarioService.estaLogeado()" class="nav-link text-danger" (click)="cerrarSesion()">Cerrar sesion</a>
-        </li>
+        </li> -->
       </ul>  
     </div>
   </nav>

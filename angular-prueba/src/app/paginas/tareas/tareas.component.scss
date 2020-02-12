@@ -1,25 +1,14 @@
-li {
 
-    span.titulo {
-
-        font-weight: 500;
-
-    }
-
-    span.completada {
-
-        text-decoration: line-through;
-        font-weight: 100;
-        color: grey;
-
-    }
-
-}
 
 .container-fondo-tareas {
 
     background-image: url(../../../assets/images/fondo-tareas.jpg);
     padding: 3em;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 80vh;
 
 }
 
@@ -29,6 +18,37 @@ li {
     background-color: whitesmoke;
     opacity: 90%;
     margin: auto;
+    width: 70vw;
+    padding: 20px;
+
+    input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    input[type="text"] {
+        width: 80%;
+        margin-left: 0.5em;
+    }  
+
+    li {
+
+        .titulo {
+    
+            font-weight: 500;
+            font-size: 15px;
+    
+        }
+    
+        .completada {
+    
+            text-decoration: line-through;
+            font-weight: 100;
+            color: grey;
+    
+        }
+    
+    }
 
     
 }

@@ -19,12 +19,15 @@
         <div class="row justify-content-center pb-2">
             <div class="col">
                 <ul class="list-group">
-                    <li class="list-group-item" *ngFor="let tarea of tareas">
+                    <li class="list-group-item" *ngFor="let tarea of tareas" (click)="modoEdicion = true">
                         <div class="row">
                             <div class="col-11">
                                 <input type="checkbox" [checked]="tarea.completada" (click)=editarEstado(tarea)>
                                 <b> {{tarea.id}} </b>
-                                <span class="titulo {{(tarea.completada)?'completada':''}}"> {{tarea.titulo}}</span>
+                                <input type="text" [(ngModel)]="tarea.titulo" 
+                                (blur)="cambiarTitulo(tarea); modoEdicion = false"
+                                [disabled]="!modoEdicion"
+                                class="titulo {{ (tarea.completada) ? 'completada' : '' }}" />
                             </div>
                             <div class="col-1 d-flex justify-content-center">
                                 <i class="fas fa-trash ml-3" (click) = eliminarTarea(tarea)></i>

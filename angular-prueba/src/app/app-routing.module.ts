@@ -12,6 +12,9 @@ import { RecetasComponent } from './paginas/recetas/recetas.component';
 import { Error404Component } from './paginas/error404/error404.component';
 import { SaludarComponent } from './paginas/saludar/saludar.component';
 import { TareasComponent } from './paginas/tareas/tareas.component';
+import { PrivadoComponent } from './paginas/privado/privado.component';
+import { LoginGuard } from './guards/login.guard';
+import { LoginComponent } from './paginas/login/login.component';
 
 /**
  * Definir las rutas de la app angular
@@ -30,6 +33,11 @@ const routes: Routes = [
   { path: 'recetas', component: RecetasComponent},
   { path: 'tareas', component: TareasComponent},
   { path: 'saludar/:pNombre', component: SaludarComponent},
+  { path: 'login', component: LoginComponent},
+
+  //Vamos a proteger esta ruta con un GUARD
+
+  { path: 'privado', component: PrivadoComponent, canActivate: [LoginGuard]},
   { path: '**', component: Error404Component}
 ];
 

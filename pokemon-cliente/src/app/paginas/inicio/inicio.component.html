@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col">
+        <div class="input-group">
+            <input type="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar pokemon por nombre">
+            <div class="input-group-append"><span class="input-group-text"><span class="fas fa-search"></span></span></div>            
+        </div>
+        <div>
+            <input type="checkbox" [(ngModel)]="checkGluten">
+        </div>
+    </div>
+</div>
+<div class="row mt-2 mb-4"><h2> Lista de Pokemons </h2></div>
+<div class="row flex-row">
+    <div class="col col-5">
+        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda" (click)="selecionarPokemon(pokemon)">
+            <div class="col-2 pokemon-id d-flex justify-content-center p-3"> {{pokemon.id}}  </div>
+            <div class="col pokemon-nombre d-flex justify-content-start p-3 {{ (pokemon==pokemonSeleccionado) ? 'activo' : ''  }}">{{pokemon.nombre}}</div>
+        </div>    
+    </div>
+    <div class="col col-7">
+        <div class="card d-flex flex-row" style="width: 19rem;">
+            <img class="card-img-top" src="{{pokemonSeleccionado.imagen}}" alt="imagen {{pokemonSeleccionado.nombre}}">
+            <div class="card-body active">
+                <h5 class="card-title mb-4">{{pokemonSeleccionado.nombre}}</h5>
+                <h5 class="card-subtitle">Lista de habilidades</h5>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let habilidad of pokemonSeleccionado.habilidades">{{habilidad.nombre}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

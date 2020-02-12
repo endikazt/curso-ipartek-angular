@@ -49,5 +49,4 @@ export const RUTAS =  [
         'nombre' : 'Tareas',
         'icono' : ''
     }
-
 ];

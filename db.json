@@ -11,11 +11,6 @@
       "completada": false
     },
     {
-      "id": 5,
-      "titulo": "Mejorar UL, mostrando mensajes",
-      "completada": true
-    },
-    {
       "id": 6,
       "titulo": "El eliminar mostrar al usuario ID y titulo de la tarea",
       "completada": true
@@ -27,7 +22,7 @@
     },
     {
       "id": 8,
-      "titulo": "Todas las tareas centaras y con una imagen semitransparente",
+      "titulo": "Todas las tareas centradas y con una imagen semitransparente",
       "completada": true
     }
   ],

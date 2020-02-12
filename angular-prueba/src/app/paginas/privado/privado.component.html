@@ -1,0 +1,10 @@
+<h2>Zona Privada</h2>
+<p>Ha esta zona solo pueden accder usuario logeados</p>
+<p>Para porteger el acceso a esta ruta debemos usar un GUARD y definirla en routing</p>
+<code> path: 'privado', component: PrivadoComponent, canActivate: [LoginGuard] </code>
+<dl>
+    <dt> canActivate </dt>
+    <dd> Guarda para indicar si se puede activar esa ruta </dd>
+    <dt>LoginGuard</dt>
+    <dd>Guarda creada por nostros, que retornara true o false</dd>
+</dl>

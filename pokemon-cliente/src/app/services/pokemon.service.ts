@@ -33,7 +33,7 @@ export class PokemonService implements IPokemonService{
 
   getAll() : Observable<any> {
     const url = API_URL + `pokemon/`;
-    console.trace('PokemonService getAll ' + API_URL);
+    console.trace('PokemonService getAll ' + url);
     return this.http.get(url);
   }
   

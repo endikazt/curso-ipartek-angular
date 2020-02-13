@@ -1,12 +1,19 @@
-export class Habilidad {
+interface IHabilidad{
 
-    private _id: number;
-    private _nombre: string;
+    id: number;
+    nombre: string;
+
+}
+
+export class Habilidad implements IHabilidad {
+
+    id: number;
+    nombre: string;
 
     constructor(){
 
-        this._id = 0;
-        this._nombre = "";
+        this.id = 0;
+        this.nombre = "";
 
     }
 

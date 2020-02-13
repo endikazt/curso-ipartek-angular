@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuarioService : UsuariosService,
+    private router: Router) { }
 
   ngOnInit() {
+  }
+
+  cerrarSesion(){
+    console.trace('NavbarComponente cerrarSesion()');
+
+    const mensaje = "¿Esta seguro de que quiere cerrar la sesion?";
+
+    if(confirm(mensaje)){
+      this.usuarioService.cerrarSesion();
+      this.router.navigate(['/']); //ir a inicio 
+    }
+
   }
 
 }

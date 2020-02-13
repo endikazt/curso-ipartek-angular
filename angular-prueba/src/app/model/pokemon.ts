@@ -3,14 +3,14 @@ export class Pokemon {
     private _id: number;
     private _nombre: string;
     private _imagen: string;
-    private _habilidad: Map<number,string>;
+    private _habilidad: string;
 
     constructor(){
 
         this._id = 0;
         this.nombre = "";
         this._imagen = "";
-        this._habilidad = new Map();
+        this._habilidad = "";
 
     }
 
@@ -36,10 +36,10 @@ export class Pokemon {
         this._imagen = (value !== undefined && value !== '')?  value : 'https://i.etsystatic.com/12696278/r/il/bb21a8/1868980486/il_570xN.1868980486_d6zs.jpg';
     }
 
-    public get habilidad():  Map<number,string> {
+    public get habilidad():  string {
         return this._habilidad;
     }
-    public set habilidad(value:  Map<number,string>) {
+    public set habilidad(value: string) {
         this._habilidad = value;
     }
 

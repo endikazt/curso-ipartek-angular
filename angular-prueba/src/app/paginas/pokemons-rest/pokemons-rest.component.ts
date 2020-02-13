@@ -14,7 +14,7 @@ export class PokemonsRestComponent implements OnInit {
 
   constructor(private pokemonService: PokemonService) { 
     console.trace('PokemonRestComponente contructor');
-    this.pokemon = new Pokemon(1,'','https://i.etsystatic.com/12696278/r/il/bb21a8/1868980486/il_570xN.1868980486_d6zs.jpg','');
+    this.pokemon = new Pokemon();
     console.debug(this.pokemon);
   }
 

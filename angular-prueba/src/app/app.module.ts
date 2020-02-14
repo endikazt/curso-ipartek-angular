@@ -26,6 +26,10 @@ import { SaludarComponent } from './paginas/saludar/saludar.component';
 import { TareasComponent } from './paginas/tareas/tareas.component';
 import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginComponent } from './paginas/login/login.component';
+import { ComprasComponent } from './paginas/compras/compras.component';
+import { DetalleComponent } from './paginas/compras/detalle/detalle.component';
+import { CarritoComponent } from './paginas/compras/carrito/carrito.component';
+import { ListadoComponent } from './paginas/compras/listado/listado.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { LoginComponent } from './paginas/login/login.component';
     SaludarComponent,
     TareasComponent,
     PrivadoComponent,
-    LoginComponent
+    LoginComponent,
+    ComprasComponent,
+    DetalleComponent,
+    CarritoComponent,
+    ListadoComponent
   ],
   imports: [
     BrowserModule,

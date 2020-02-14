@@ -1,0 +1,13 @@
+<div class="row">
+
+    <!-- listado -->
+    <div class="col">
+        <app-listado [frutas]="frutas" (pasameFrutaEvento)="recogerEvento($event)" ></app-listado>
+    </div>
+
+    <!-- detalle -->
+    <div class="col">
+        <app-detalle [fruta]="frutaSeleccionada"></app-detalle>
+    </div>
+    
+</div>

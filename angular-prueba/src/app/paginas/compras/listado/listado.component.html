@@ -1,0 +1,6 @@
+<ul class="list-group">
+    <li *ngIf="frutas.length === 0" class="list-group-item">Cargando frutas...</li>
+    <li *ngFor="let f of frutas" 
+         (click)="lanzar($event, f)"
+         class="list-group-item {{(frutaSeleccionada === f ) ? 'active' : ''}}">{{f.nombre}}</li>
+  </ul>

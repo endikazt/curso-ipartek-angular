@@ -15,6 +15,7 @@ import { TareasComponent } from './paginas/tareas/tareas.component';
 import { PrivadoComponent } from './paginas/privado/privado.component';
 import { LoginGuard } from './guards/login.guard';
 import { LoginComponent } from './paginas/login/login.component';
+import { ComprasComponent } from './paginas/compras/compras.component';
 
 /**
  * Definir las rutas de la app angular
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'tareas', component: TareasComponent},
   { path: 'saludar/:pNombre', component: SaludarComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'compras', component: ComprasComponent},
 
   //Vamos a proteger esta ruta con un GUARD
 

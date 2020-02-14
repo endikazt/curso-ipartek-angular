@@ -1,0 +1,65 @@
+<!-- Buscador -->
+<div class="row mb-4">
+  <div class="col">
+    <div class="input-group">
+      <input type="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar libro por nombre o ISBN">
+      <div class="input-group-append"><span class="input-group-text"><span class="fas fa-search"></span></span></div>            
+  </div>
+  </div>
+</div> <!-- Fin Buscador-->
+
+<div class="row mb-3">
+  <div class="col">
+      <h2> Listado de libros</h2>
+  </div>
+</div>
+
+<div class="row">
+    
+  <!-- listado libros -->
+  <div class="col col-5">
+    <ul class="list-group">
+      <li *ngIf="libros.length === 0" class="list-group-item">No hay libros con este nombre o ISBN</li>
+      <li *ngFor="let libro of libros | librosFiltro : busqueda " 
+            (click)="seleccionarLibro(libro)"
+            class="list-group-item {{(libroSeleccionado === libro ) ? 'active' : ''}}">
+            {{libro.title}}
+            <ul class="list-group mt-2">
+              <li class="list-group-item {{(libroSeleccionado === libro ) ? 'active' : ''}}">
+                ISBN: {{libro.isbn}}
+              </li>
+            </ul>
+      </li>
+    </ul>
+  </div> <!-- Fin listado libros-->
+
+  <!-- detalle libro -->
+  <div class="col col-7">
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="{{(libroSeleccionado === undefined) ? imagen-default : libroSeleccionado.cover}}" alt="imagen libro">
+      <div class="card-body">
+        <h5 class="card-title mb-3">{{(libroSeleccionado === undefined) ? 'Titulo' : libroSeleccionado.title}}</h5>
+        <h6 class="card-subtitle mb-3">{{(libroSeleccionado === undefined) ? 'Subtitulo' : libroSeleccionado.subtitle}}</h6>
+        <div class="row">
+          <div class="col col-7 mb-3">
+            <h6 class="card-subtitle font-italic">{{(libroSeleccionado === undefined) ? 'Autor' : libroSeleccionado.author}}</h6>
+          </div>
+          <div class="col col-5">
+            <h6 class="card-subtitle">Pags. {{(libroSeleccionado === undefined) ? '' : libroSeleccionado.pages}}</h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col col-7 mb-3">
+            <h6 class="card-subtitle font-italic">Fecha: {{(libroSeleccionado === undefined) ? '' : libroSeleccionado.published}}</h6>
+          </div>
+          <div class="col col-5">
+            <h6 class="card-subtitle"> {{(libroSeleccionado === undefined) ? 'Editorial' : libroSeleccionado.publisher}}</h6>
+          </div>
+        </div>
+        <p class="card-text">{{(libroSeleccionado === undefined) ? 'Descripcion' : libroSeleccionado.description}}</p>
+        <a href="{{(libroSeleccionado === undefined) ? '#' : libroSeleccionado.website}}" class="btn btn-primary btn-block">Pagina web</a>
+      </div>
+    </div>
+  </div> <!-- Fin detalle libros -->
+
+</div>

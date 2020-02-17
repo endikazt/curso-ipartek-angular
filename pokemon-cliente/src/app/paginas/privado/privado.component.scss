@@ -1,0 +1,35 @@
+div.col {
+
+
+    .pokemon-lista {
+
+        border: 1px solid black;
+
+
+        .pokemon-id {
+
+            border-right: 1px solid black;
+            background-color: teal;
+            height: 100%;
+            font-weight: 500;
+            font-size: 20px;
+            color: white;
+
+        }
+
+        .pokemon-nombre {
+
+            font-size: 18px;
+
+        }
+
+        .activo {
+
+            background-color: rgba($color: teal, $alpha: 0.8);
+            color: white;
+
+        }
+        
+    }
+
+}

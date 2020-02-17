@@ -1,9 +1,11 @@
-<div class="row">
-    <div class="col">
+<div class="row d-flex flex-column">
+    <div class="col mb-3">
         <div class="input-group">
             <input type="search" [(ngModel)]="busqueda" class="form-control" placeholder="Buscar pokemon por nombre">
             <div class="input-group-append"><span class="input-group-text"><span class="fas fa-search" (click)="buscar(habilidades)" ></span></span></div>            
         </div>
+    </div>
+    <div class="col ml-3">
         <div class="form-group container-habilidades">
             <div class="row">
                 <label for="options">Filtro de habilidades: </label>
@@ -22,7 +24,7 @@
         </div>
     </div>
 </div>
-<div class="row mt-2 mb-4"><h2> Lista de Pokemons </h2></div>
+<div class="row mt-1 mb-4"><h2> Lista de Pokemons </h2></div>
 <div class="row flex-row">
     <div class="col col-5">
         <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda" (click)="selecionarPokemon(pokemon)">

@@ -1,1 +1,40 @@
-<p>privado works!</p>
+<div *ngIf="mensaje" class="alert alert-primary" role="alert">
+    {{mensaje}}
+  </div>
+<div class="row mt-2 mb-4"><h2> Lista de Pokemons </h2></div>
+<div class="row flex-row">
+    <div class="col col-5">
+        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda" (click)="selecionarPokemon(pokemon)">
+            <div class="col-2 pokemon-id d-flex justify-content-center p-3"> {{pokemon.id}}  </div>
+            <div class="col pokemon-nombre d-flex justify-content-start p-3 {{ (pokemon==pokemonSeleccionado) ? 'activo' : ''  }}">{{pokemon.nombre}}</div>
+            <div class="col-1 d-flex justify-content-center">
+                <i class="fas fa-trash ml-3" (click) = eliminarPokemon(pokemon)></i>
+            </div>
+        </div>    
+    </div>
+    <div class="col col-4 ml-5">
+        <div class="form-group">
+            <form [formGroup] = "formulario" (ngSubmit)="enviar(formulario.value)">
+                <div class="form-group">
+                  <label for="nombre">Nombre del pokemon</label>
+                  <input type="text" class="form-control" formControlName="nombre" aria-describedby="nombreHelp" 
+                            placeholder="Introduce un nombre" value="{{(pokemonSeleccionado.id === 0) ? '' : pokemonSeleccionado.nombre}}">
+                  <small id="nombreHelp" class="form-text text-muted">Minimo 1 caracter, maximo 50.</small>
+                  <label for="imagen">Imagen del pokemon</label>
+                  <input type="text" class="form-control" formControlName="imagen" aria-describedby="imagenesHelp" 
+                            placeholder="URL terminada en PNG, JPG, JPEG, etc" value="{{pokemonSeleccionado.imagen}}">
+                </div>
+                <div class="row d-flex flex-column">
+                    <div class="col mb-2">
+                        <button class="btn btn-block btn-secondary" (click)="restablecerValores()" > Restablecer valores </button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-block btn-primary" [disabled]="formulario.invalid" >{{(pokemonSeleccionado.id === 0) ? 'Crear' : 'Modificar'}} pokemon</button>
+                    </div>
+                </div>
+              </form>
+        </div>
+        <pre>{{ formulario.value | json }}</pre>             
+        <pre>{{ formulario.status | json }}</pre>  
+    </div>
+</div>

@@ -13,7 +13,7 @@
           <a *ngIf="!usuarioService.estaLogeado()" [routerLink]="'/login'" routerLinkActive="router-link-active" class="nav-link">Iniciar sesion</a>
         </li>
         <li class="nav-item active" >
-          <a *ngIf="usuarioService.estaLogeado()" [routerLink]="'/privado'" routerLinkActive="router-link-active" class="nav-link">Privado</a>
+          <a *ngIf="usuarioService.estaLogeado()" [routerLink]="'/privado'" routerLinkActive="router-link-active" class="nav-link">Backoffice</a>
         </li>
         <li class="nav-item active" >
           <a *ngIf="usuarioService.estaLogeado()" class="nav-link text-danger" (click)="cerrarSesion()">Cerrar sesion</a>

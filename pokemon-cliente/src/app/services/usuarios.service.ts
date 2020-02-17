@@ -7,19 +7,25 @@ import { Usuario } from '../model/usuario';
 })
 export class UsuariosService implements IUsuarioService{
 
-  private isLogged: boolean;
+  private storage : any;
   private usuario : Usuario;
 
   constructor() { 
 
-    this.isLogged = false;
     this.usuario = undefined;
+    this.storage = window.sessionStorage;
 
   }
 
   estaLogeado(): boolean {
-    return this.isLogged;
+
+    if(this.storage.getItem('usuarioStorage')){
+      return true;
+    } else {
+      return false;
+    }
   }
+  
   login(nombre: string, password: string): Usuario {
 
     const NOMBRE = 'admin';
@@ -34,17 +40,17 @@ export class UsuariosService implements IUsuarioService{
       usuarioBuscar.password = password;
       usuarioBuscar.id = 99;
 
-      this.isLogged = true
+     this.storage.setItem('usuarioStorage', JSON.stringify(usuarioBuscar));
 
     } else {
 
-      this.isLogged = false;
+      this.storage.removeItem('usuarioStorage');
 
     }
 
     return usuarioBuscar;
   }
-  cerrarSesion(): boolean {
-    return this.isLogged = false;
+  cerrarSesion() {
+   this.storage.removeItem('usuarioStorage');
   }
 }

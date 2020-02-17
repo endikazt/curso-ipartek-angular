@@ -1,4 +1,5 @@
 import { Observable } from "rxjs";
+import { Pokemon } from '../model/pokemon';
 
 export interface IPokemonService {
 
@@ -14,6 +15,13 @@ export interface IPokemonService {
      * @param id Numben id del pokemon
      * @see GET  /api/v2/characteristic/{id}
      */
-    getCaracteristicas(id:number): Observable<any>;
+    getCaracteristicas(id:number): Observable<Pokemon>;
+
+    crear ( pokemon : Pokemon): Observable<Pokemon>;
+
+    modificar ( pokemon : Pokemon ): Observable<Pokemon>;
+
+    eliminar ( id : number ): Observable<Pokemon>;
+
 
 }

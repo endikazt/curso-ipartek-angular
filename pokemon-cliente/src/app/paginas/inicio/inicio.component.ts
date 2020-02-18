@@ -16,12 +16,16 @@ export class InicioComponent implements OnInit {
   mensaje : string;
   pokemonSeleccionado : Pokemon;
   options : Array<any>;
-  habilidades : Array<string>;
+  habilidades : Array<Habilidad>;
+  habilidadesFiltro : Array<any>;
+  habilidadesFinal : Array<any>;
 
 
   constructor(private pokemonService: PokemonService, private habilidaService : HabilidadService) {
     this.listaPokemon = new Array<Pokemon>();
-    this.habilidades = [];
+    this.habilidades = new Array<Habilidad>();
+    this.habilidadesFiltro = new Array();
+    this.habilidadesFinal = new Array();
     this.pokemonSeleccionado = new Pokemon();
     this.options = [];
     this.mensaje = "Bienvenido a la app de Pokemons."
@@ -47,9 +51,10 @@ export class InicioComponent implements OnInit {
   cargarHabilidades(): void {
 
     this.habilidaService.getAll().subscribe(datos => {
-        datos.forEach(element => {
-          this.habilidades.push(element.nombre);
-        });      
+      this.habilidades = datos;
+      this.habilidadesFiltro = this.habilidades.map( el => { 
+          return {name: el.nombre, value : el.nombre, checked: false};
+        });
       });
 
   }
@@ -59,18 +64,9 @@ export class InicioComponent implements OnInit {
     this.pokemonSeleccionado = pokemon;
   };
 
-  buscar(options) {
+  actualizarHabilidades(habilidades2 : Array<any>) {
 
-    console.debug('buscar %o', options);
-    this.listaPokemon = this.listaPokemonOriginal.slice();
-    const habilidadesSeleccionadas = this.options.filter( el => el.checked ).map( el => el.value);
-    console.debug('habilidadesSeleccionadas %o', habilidadesSeleccionadas);
-    if ( habilidadesSeleccionadas.length > 0 ) {  // si no hay nada cheked apra que buscar
-      this.listaPokemon = this.listaPokemon.filter( el => {
-        console.debug('filtrando frutas');
-        return el.habilidad.find( color => habilidadesSeleccionadas.indexOf(color) !== -1 );
-      });
-    }
+    this.habilidadesFinal = habilidades2.filter( el => el.checked);
 
   }// buscar
 

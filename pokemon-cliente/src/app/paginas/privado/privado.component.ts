@@ -3,6 +3,7 @@ import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HabilidadService } from 'src/app/services/habilidad.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Habilidad } from 'src/app/model/habilidad';
 
 @Component({
   selector: 'app-privado',
@@ -25,7 +26,7 @@ export class PrivadoComponent implements OnInit {
               private builder : FormBuilder) {
 
     this.listaPokemon = new Array<Pokemon>();
-    this.habilidades = [];
+    this.habilidades = new Array<string>();
     this.pokemonSeleccionado = new Pokemon();
     this.options = [];
     this.mensaje = ""
@@ -88,26 +89,54 @@ export class PrivadoComponent implements OnInit {
   enviar( formData ) {
     console.debug('click en enviar %o', formData);
 
-    let nuevoPokemon = new Pokemon();
+    if(this.pokemonSeleccionado.id != 0){
 
-    nuevoPokemon.nombre = formData.nombre;
-    nuevoPokemon.imagen = formData.imagen;
+      let pokemonModificado = this.pokemonSeleccionado;
 
-    console.debug('datos nuevoPokemon %o', nuevoPokemon);
+      pokemonModificado.nombre= formData.nombre;
+      pokemonModificado.imagen = formData.imagen;
 
-    this.pokemonService.crear(nuevoPokemon).subscribe( data => {
-      console.trace('Nuevo pokemon creado %o . Se reinicia valores', data);
-      this.restablecerValores();
-      this.cargarPokemmons();
-    },
-    error =>{
-      console.warn('Peticion erronea data %o', error)
-      this.mensaje = "No existe el pokemon %o"
-    },
-    () =>{
-      console.trace('esto se hace siempre');
-    }
-    );
+      this.pokemonService.modificar(pokemonModificado).subscribe( data => {
+        console.trace('Pokemon modificado %o . Se reinicia valores', data);
+        this.mensaje = "Pokemon " + pokemonModificado.id + "'" + pokemonModificado.nombre + "'" + "modificado." ;
+        this.restablecerValores();
+        this.cargarPokemmons();
+      },
+      error =>{
+        console.warn('Peticion erronea data %o', error)
+        this.mensaje = "No se ha podido completar la solicitud. Error -> " + error;
+      },
+      () =>{
+        console.trace('esto se hace siempre');
+      }
+      );
+
+    } else {
+
+        let nuevoPokemon = new Pokemon();
+        let nombrePokemonNuevo = formData.nombre;
+        let imagenPokemonNuevo = formData.imagen;
+
+        nuevoPokemon.nombre = nombrePokemonNuevo;
+        nuevoPokemon.imagen = imagenPokemonNuevo;
+
+        console.debug('datos nuevoPokemon %o', nuevoPokemon);
+
+        this.pokemonService.crear(nuevoPokemon).subscribe( data => {
+          console.trace('Nuevo pokemon creado %o . Se reinicia valores', data);
+          this.mensaje = "Pokemon '" + nuevoPokemon.nombre + "'" + "creado." ;
+          this.restablecerValores();
+          this.cargarPokemmons();
+        },
+        error =>{
+          console.warn('Peticion erronea data %o', error)
+          this.mensaje = "No se ha podido completar la solicitud. Error -> " + error;
+        },
+        () =>{
+          console.trace('esto se hace siempre');
+        }
+        );
+      }
     }
 
   eliminarPokemon(pokemon : Pokemon) {
@@ -120,9 +149,12 @@ export class PrivadoComponent implements OnInit {
 
       this.pokemonService.eliminar(pokemon.id).subscribe( data => {
         
-        this.mensaje = 'Pookemon ' + pokemon.id + ' "' + pokemon.nombre + '" eliminada';
+        this.mensaje = 'Pokemon ' + pokemon.id + ' "' + pokemon.nombre + '" eliminado.';
         
-        this.cargarPokemmons()});
+        this.cargarPokemmons();
+        this.restablecerValores();
+      
+      });
 
     } else {
 

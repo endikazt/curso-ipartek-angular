@@ -4,7 +4,7 @@
 <div class="row mt-2 mb-4"><h2> Lista de Pokemons </h2></div>
 <div class="row flex-row">
     <div class="col col-5">
-        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda" (click)="selecionarPokemon(pokemon)">
+        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon" (click)="selecionarPokemon(pokemon)">
             <div class="col-2 pokemon-id d-flex justify-content-center p-3"> {{pokemon.id}}  </div>
             <div class="col pokemon-nombre d-flex justify-content-start p-3 {{ (pokemon==pokemonSeleccionado) ? 'activo' : ''  }}">{{pokemon.nombre}}</div>
             <div class="col-1 d-flex justify-content-center">
@@ -23,6 +23,17 @@
                   <label for="imagen">Imagen del pokemon</label>
                   <input type="text" class="form-control" formControlName="imagen" aria-describedby="imagenesHelp" 
                             placeholder="URL terminada en PNG, JPG, JPEG, etc" value="{{pokemonSeleccionado.imagen}}">
+                    <div class="row">
+                        <div class="col" *ngFor="let habilidad of habilidades" >
+                            <label>
+                                <input type="checkbox"
+                                       name="habilidades"
+                                       value="{{habilidad}}"
+                                       [(ngModel)]="habilidad.checked"/>
+                                       {{habilidad}}
+                            </label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row d-flex flex-column">
                     <div class="col mb-2">

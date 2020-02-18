@@ -11,23 +11,26 @@
                 <label for="options">Filtro de habilidades: </label>
             </div>
             <div class="row">
-                <div class="col" *ngFor="let habilidad of habilidades" >
+                <div class="col" *ngFor="let habilidad of habilidadesFiltro" >
                     <label>
                         <input type="checkbox"
-                               name="options"
-                               value="{{habilidad}}"
+                               name="habilidadesFiltro"
+                               value="{{habilidad.name}}"
                                [(ngModel)]="habilidad.checked"/>
-                               {{habilidad}}
+                               {{habilidad.value}}
                     </label>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col ml-3">
+        <button (click)="actualizarHabilidades(habilidadesFiltro)">sdfsdfsdf</button>
+    </div>
 </div>
 <div class="row mt-1 mb-4"><h2> Lista de Pokemons </h2></div>
 <div class="row flex-row">
     <div class="col col-5">
-        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda" (click)="selecionarPokemon(pokemon)">
+        <div class="row pokemon-lista" *ngFor="let pokemon of listaPokemon | pokemonsFiltro : busqueda : habilidadesFinal" (click)="selecionarPokemon(pokemon)">
             <div class="col-2 pokemon-id d-flex justify-content-center p-3"> {{pokemon.id}}  </div>
             <div class="col pokemon-nombre d-flex justify-content-start p-3 {{ (pokemon==pokemonSeleccionado) ? 'activo' : ''  }}">{{pokemon.nombre}}</div>
         </div>    

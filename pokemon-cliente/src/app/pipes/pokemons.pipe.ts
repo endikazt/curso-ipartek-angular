@@ -5,19 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PokemonsPipe implements PipeTransform {
 
-  transform(pokemons: any, busqueda : string, habilidad: string): any {
+  transform(pokemons: any, busqueda : string, arrayHabilidad: Array<any>): any {
 
     let resultado = pokemons;
 
-    console.debug('habilidad ', habilidad);
+    console.debug('arrayHabilidad ', arrayHabilidad);
     console.debug('busqueda ', busqueda);
 
-    // filtrar recetas sin gluten
-    // if ( habilidad ) {
-    //   resultado = resultado.filter( (el) => el.isGlutenFree );
-    // }
 
-    // filtrar por nombre receta o nombre cocinero o ingredientes
     if ( busqueda && '' !== busqueda) {
 
       busqueda = busqueda.toUpperCase();
@@ -26,6 +21,15 @@ export class PokemonsPipe implements PipeTransform {
           const encontrar = (el.nombre).toUpperCase();
           return encontrar.includes(busqueda);
       });
+
+    }
+
+    if(arrayHabilidad.length > 0){
+      arrayHabilidad = arrayHabilidad.map(el => el.name);
+
+      console.debug(resultado)
+
+      resultado = resultado.filter(el => el.habilidades.find(el => arrayHabilidad.indexOf(el.nombre)!==-1))
 
     }
 

@@ -50,6 +50,7 @@ export class PokemonService implements IPokemonService{
   }
   modificar(pokemon: Pokemon): Observable<any> {
     const url = API_URL + `pokemon/${pokemon.id}/`;
+    console.debug(url);
     return this.http.put<any>(url, pokemon);
   }
   eliminar(id: number): Observable<any> {

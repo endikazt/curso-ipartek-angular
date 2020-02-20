@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a [routerLink]="'/'" routerLinkActive="router-link-active" class="nav-link">Inicio</a>
+        </li>
+        <li class="nav-item active">
+            <a [routerLink]="'/backoffice'" routerLinkActive="router-link-active" class="nav-link">Backoffice</a>
+        </li>
+        <!-- Rutas si el usuario esta loegado o no
+        <li class="nav-item active" >
+          <a *ngIf="!usuarioService.estaLogeado()" [routerLink]="'/login'" routerLinkActive="router-link-active" class="nav-link">Iniciar sesion</a>
+        </li>
+        <li class="nav-item active" >
+          <a *ngIf="usuarioService.estaLogeado()" [routerLink]="'/privado'" routerLinkActive="router-link-active" class="nav-link">Privado</a>
+        </li>
+        <li class="nav-item active" >
+          <a *ngIf="usuarioService.estaLogeado()" class="nav-link text-danger" (click)="cerrarSesion()">Cerrar sesion</a>
+        </li> -->
+      </ul>  
+    </div>
+  </nav>

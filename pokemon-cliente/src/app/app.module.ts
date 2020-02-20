@@ -11,6 +11,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { Error404Component } from './paginas/error404/error404.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PokemonsPipe } from './pipes/pokemons.pipe';
+import { MensajeComponent } from './componentes/mensaje/mensaje.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PokemonsPipe } from './pipes/pokemons.pipe';
     LoginComponent,
     NavbarComponent,
     Error404Component,
-    PokemonsPipe
+    PokemonsPipe,
+    MensajeComponent
   ],
   imports: [
     BrowserModule,

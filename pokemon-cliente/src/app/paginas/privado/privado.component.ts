@@ -4,6 +4,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { HabilidadService } from 'src/app/services/habilidad.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Habilidad } from 'src/app/model/habilidad';
+import { Mensaje } from 'src/app/model/mensaje';
 
 @Component({
   selector: 'app-privado',
@@ -14,7 +15,7 @@ export class PrivadoComponent implements OnInit {
 
   listaPokemon : Array<Pokemon>;
   listaPokemonOriginal : Array<Pokemon>;
-  mensaje : string;
+  mensaje : Mensaje;
   pokemonSeleccionado : Pokemon;
   options : Array<any>;
   habilidades : Array<string>;
@@ -29,7 +30,7 @@ export class PrivadoComponent implements OnInit {
     this.habilidades = new Array<string>();
     this.pokemonSeleccionado = new Pokemon();
     this.options = [];
-    this.mensaje = ""
+    this.mensaje = new Mensaje();
 
     this.formulario = this.builder.group({
 
@@ -98,13 +99,15 @@ export class PrivadoComponent implements OnInit {
 
       this.pokemonService.modificar(pokemonModificado).subscribe( data => {
         console.trace('Pokemon modificado %o . Se reinicia valores', data);
-        this.mensaje = "Pokemon " + pokemonModificado.id + "'" + pokemonModificado.nombre + "'" + "modificado." ;
+        this.mensaje.tipo = "success";
+        this.mensaje.contenido = "Pokemon " + pokemonModificado.id + "'" + pokemonModificado.nombre + "'" + "modificado." ;
         this.restablecerValores();
         this.cargarPokemmons();
       },
       error =>{
         console.warn('Peticion erronea data %o', error)
-        this.mensaje = "No se ha podido completar la solicitud. Error -> " + error;
+        this.mensaje.tipo = "danger";
+        this.mensaje.contenido = "No se ha podido completar la solicitud. Error -> " + error;
       },
       () =>{
         console.trace('esto se hace siempre');
@@ -124,13 +127,15 @@ export class PrivadoComponent implements OnInit {
 
         this.pokemonService.crear(nuevoPokemon).subscribe( data => {
           console.trace('Nuevo pokemon creado %o . Se reinicia valores', data);
-          this.mensaje = "Pokemon '" + nuevoPokemon.nombre + "'" + "creado." ;
+          this.mensaje.tipo = "success";
+          this.mensaje.contenido = "Pokemon '" + nuevoPokemon.nombre + "'" + "creado." ;
           this.restablecerValores();
           this.cargarPokemmons();
         },
         error =>{
           console.warn('Peticion erronea data %o', error)
-          this.mensaje = "No se ha podido completar la solicitud. Error -> " + error;
+          this.mensaje.tipo = "danger";
+          this.mensaje.contenido = "No se ha podido completar la solicitud. Error -> " + error;
         },
         () =>{
           console.trace('esto se hace siempre');
@@ -149,7 +154,8 @@ export class PrivadoComponent implements OnInit {
 
       this.pokemonService.eliminar(pokemon.id).subscribe( data => {
         
-        this.mensaje = 'Pokemon ' + pokemon.id + ' "' + pokemon.nombre + '" eliminado.';
+        this.mensaje.tipo = "success";
+        this.mensaje.contenido = 'Pokemon ' + pokemon.id + ' "' + pokemon.nombre + '" eliminado.';
         
         this.cargarPokemmons();
         this.restablecerValores();

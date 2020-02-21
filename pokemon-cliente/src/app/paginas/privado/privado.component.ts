@@ -103,7 +103,6 @@ export class PrivadoComponent implements OnInit {
 
     }
 
-
   }// checkCambiado
 
   selecionarPokemon = function( pokemon ) {

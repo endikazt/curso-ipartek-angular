@@ -30,6 +30,7 @@ export class PrivadoComponent implements OnInit {
     this.habilidades = new Array<any>();
     this.pokemonSeleccionado = new Pokemon();
     this.mensaje = new Mensaje();
+    this.mensaje.contenido = "Bienvenido a la seccion de BackOffice de la aplicaccion :)"
 
     this.formulario = this.builder.group({
       
@@ -177,7 +178,7 @@ export class PrivadoComponent implements OnInit {
       this.pokemonService.modificar(pokemonModificado).subscribe( data => {
         console.trace('Pokemon modificado %o . Se reinicia valores', data);
         this.mensaje.tipo = "success";
-        this.mensaje.contenido = "Pokemon " + pokemonModificado.id + "'" + pokemonModificado.nombre + "'" + "modificado." ;
+        this.mensaje.contenido = "Pokemon " + pokemonModificado.id + " '" + pokemonModificado.nombre + "' " + "modificado." ;
         this.restablecerValores();
         this.cargarPokemmons();
       },
@@ -206,7 +207,7 @@ export class PrivadoComponent implements OnInit {
         this.pokemonService.crear(nuevoPokemon).subscribe( data => {
           console.trace('Nuevo pokemon creado %o . Se reinicia valores', data);
           this.mensaje.tipo = "success";
-          this.mensaje.contenido = "Pokemon '" + nuevoPokemon.nombre + "'" + "creado." ;
+          this.mensaje.contenido = "Pokemon '" + nuevoPokemon.nombre + "'" + " creado." ;
           this.restablecerValores();
           this.cargarPokemmons();
         },

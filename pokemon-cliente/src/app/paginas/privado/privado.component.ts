@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HabilidadService } from 'src/app/services/habilidad.service';
-<<<<<<< HEAD
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Mensaje } from 'src/app/model/mensaje';
-=======
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray, Form } from '@angular/forms';
->>>>>>> formulario-habilidades
+import { Mensaje } from 'src/app/model/mensaje';
 
 @Component({
   selector: 'app-privado',
@@ -33,12 +29,7 @@ export class PrivadoComponent implements OnInit {
     this.listaPokemon = new Array<Pokemon>();
     this.habilidades = new Array<any>();
     this.pokemonSeleccionado = new Pokemon();
-<<<<<<< HEAD
-    this.options = [];
     this.mensaje = new Mensaje();
-=======
-    this.mensaje = ""
->>>>>>> formulario-habilidades
 
     this.formulario = this.builder.group({
       

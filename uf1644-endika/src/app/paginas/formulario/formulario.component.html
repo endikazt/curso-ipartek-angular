@@ -1,0 +1,34 @@
+<div class="row d-flex justify-content-center mt-2 mb-3">
+    <h2>Nueva noticia</h2>
+</div>
+<div class="row d-flex justify-content-center">
+    <div class="col col-4 ml-5">
+        <div class="form-group">
+            <form [formGroup] = "formulario" (ngSubmit)="enviar(formulario.value)">
+                <div class="form-group">
+                  <label for="titulo"> Titulo</label>
+                  <input type="text" class="form-control" formControlName="titulo" aria-describedby="nombreHelp" 
+                            placeholder="Introduce el titulo de la noticia">
+                  <small id="nombreHelp" class="form-text text-muted">Minimo 1 caracter, maximo 150.</small>
+                  <label for="imagen">Imagen princiapal de la noticia </label>
+                  <input type="url" class="form-control" formControlName="imagen" aria-describedby="imagenesHelp" 
+                            placeholder="URL terminada en PNG, JPG, JPEG, etc">
+                  <label for="textCorto"> Fecha de publicacion </label>
+                  <input type="datetime-local" class="form-control" formControlName="fecha">
+                  <label for="textCorto"> Texto corto </label>
+                  <textarea  class="form-control" formControlName="textoCorto" matInput placeholder="Ex. It makes me feel..."></textarea>
+                  <label for="textCorto"> Texto noticia </label>
+                  <textarea  class="form-control" formControlName="textoNoticia" matInput placeholder="Ex. It makes me feel..."></textarea>
+                </div>
+                <div class="row d-flex flex-column">
+                    <div class="col mb-2">
+                        <button class="btn btn-block btn-secondary" (click)="restablecerValores()" > Restablecer valores </button>
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-block btn-primary" [disabled]="formulario.invalid" > Publicar noticia </button>
+                    </div>
+                </div>
+              </form>
+        </div>
+    </div>    
+</div>

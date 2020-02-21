@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 <app-mensaje [mensaje]="mensaje"></app-mensaje>>
+=======
+<div *ngIf="mensaje" class="alert alert-primary" role="alert">
+    {{mensaje}}
+  </div>
+  {{ habilidades | json }}
+  {{pokemonSeleccionado | json}}
+ <pre>{{formHabilidades.value | json}}</pre>>
+>>>>>>> formulario-habilidades
 <div class="row mt-2 mb-4"><h2> Lista de Pokemons </h2></div>
 <div class="row flex-row">
     <div class="col col-5">
@@ -21,17 +30,6 @@
                   <label for="imagen">Imagen del pokemon</label>
                   <input type="text" class="form-control" formControlName="imagen" aria-describedby="imagenesHelp" 
                             placeholder="URL terminada en PNG, JPG, JPEG, etc" value="{{pokemonSeleccionado.imagen}}">
-                    <div class="row">
-                        <div class="col" *ngFor="let habilidad of habilidades" >
-                            <label>
-                                <input type="checkbox"
-                                       name="habilidades"
-                                       value="{{habilidad}}"
-                                       [(ngModel)]="habilidad.checked"/>
-                                       {{habilidad}}
-                            </label>
-                        </div>
-                    </div>
                 </div>
                 <div class="row d-flex flex-column">
                     <div class="col mb-2">
@@ -39,6 +37,20 @@
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-block btn-primary" [disabled]="formulario.invalid" >{{(pokemonSeleccionado.id === 0) ? 'Crear' : 'Modificar'}} pokemon</button>
+                    </div>
+                </div>
+                <div class="flex-container flex-wrap">
+                  <label for="habilidadesOptions" class="mt-2 mb-2"> Habilidades: </label>
+                  <div *ngFor="let habilidad of habilidades, let i = index">
+                    <label>
+                        <input type="checkbox"
+                               name="habilidadesOptions"
+                               (change)="checkCambiado(habilidad)"
+                               value="{{habilidad.id}}"
+                               [checked]="habilidad.checked"
+                               />
+                        {{habilidad.value}}
+                    </label>
                     </div>
                 </div>
               </form>

@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HabilidadService } from 'src/app/services/habilidad.service';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Mensaje } from 'src/app/model/mensaje';
+=======
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray, Form } from '@angular/forms';
+>>>>>>> formulario-habilidades
 
 @Component({
   selector: 'app-privado',
@@ -16,9 +20,10 @@ export class PrivadoComponent implements OnInit {
   listaPokemonOriginal : Array<Pokemon>;
   mensaje : Mensaje;
   pokemonSeleccionado : Pokemon;
-  options : Array<any>;
-  habilidades : Array<string>;
+  habilidades : Array<any>;
   formulario : FormGroup;
+  formHabilidades: FormArray;
+  habilidadesDatos: any;
 
 
   constructor(private pokemonService: PokemonService, 
@@ -26,18 +31,24 @@ export class PrivadoComponent implements OnInit {
               private builder : FormBuilder) {
 
     this.listaPokemon = new Array<Pokemon>();
-    this.habilidades = new Array<string>();
+    this.habilidades = new Array<any>();
     this.pokemonSeleccionado = new Pokemon();
+<<<<<<< HEAD
     this.options = [];
     this.mensaje = new Mensaje();
+=======
+    this.mensaje = ""
+>>>>>>> formulario-habilidades
 
     this.formulario = this.builder.group({
-
+      
       id: new FormControl( 0 ),
       nombre : new FormControl ('', [Validators.required, Validators.minLength(3),Validators.maxLength(150)]),
-      imagen : new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)])
-
+      imagen : new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
+      habilidades : this.builder.array( [], [Validators.required, Validators.minLength(1)])
     });
+
+    this.formHabilidades = this.formulario.get('habilidades') as FormArray;
 
    }
 
@@ -61,29 +72,102 @@ export class PrivadoComponent implements OnInit {
   cargarHabilidades(): void {
 
     this.habilidaService.getAll().subscribe(datos => {
-        datos.forEach(element => {
-          this.habilidades.push(element.nombre);
-        });      
+      this.habilidades = datos.map( el => { 
+          return {id: el.id, value : el.nombre, checked: false};
+        });
+
+        this.habilidadesOriginal = this.habilidades.slice();
+
       });
 
   }
 
+  private crearFormGroupHabilidad(): FormGroup {
+    return this.builder.group({
+              id: new FormControl(0),
+              nombre: new FormControl('')
+            });
+  }
+
+  checkCambiado( option: any ) {
+
+    option.checked = !option.checked;
+    console.debug('checkCambiado %o', option);
+
+    if(option.checked){
+
+      const habilidad = this.crearFormGroupHabilidad();
+      habilidad.get('id').setValue( option.id );
+      habilidad.get('nombre').setValue( option.value );
+
+      this.formHabilidades.push(habilidad);
+
+    } else {
+
+      const arrayValues = this.formHabilidades.value;
+      const posicion = arrayValues.findIndex(el => el.id === option.id);
+
+      this.formHabilidades.removeAt(posicion);
+
+    }
+
+
+  }// checkCambiado
+
   selecionarPokemon = function( pokemon ) {
     console.debug('hemos hecho click %o ', pokemon );
+
     this.pokemonSeleccionado = pokemon;
     this.formulario.get('id').setValue(this.pokemonSeleccionado.id);
     this.formulario.get('nombre').setValue(this.pokemonSeleccionado.nombre);
     this.formulario.get('imagen').setValue(this.pokemonSeleccionado.imagen);
+    this.resetFormArray(this.formulario.get('habilidades'));
+
+    this.habilidades.forEach(habi => habi.checked = false);
+
+    if(pokemon.habilidades.length > 0) {
+
+      pokemon.habilidades.forEach(poke => {
+
+        const habilidad = this.crearFormGroupHabilidad();
+        habilidad.get('id').setValue( poke.id );
+        habilidad.get('nombre').setValue( poke.nombre );
+    
+        this.formHabilidades.push(habilidad);
+
+        this.habilidades.forEach(habi => {
+
+          if(poke.id === habi.id){
+
+            habi.checked = true;
+
+          }
+
+        });
+
+      });
+    }
+
   };
 
   restablecerValores() {
 
     console.debug('Se restablecen los valores del formulario de registro');
+
+    this.habilidades.forEach(habi => habi.checked = false);
+
     this.pokemonSeleccionado = new Pokemon();
     this.formulario.get('id').setValue(0);
     this.formulario.get('nombre').setValue("");
     this.formulario.get('imagen').setValue("");
+    this.resetFormArray(this.formulario.get('habilidades'))
 
+  }
+
+  resetFormArray = (formArray: FormArray) => {
+    while (formArray.length !== 0) {
+      formArray.removeAt(0)
+    }
   }
 
   enviar( formData ) {
@@ -95,6 +179,9 @@ export class PrivadoComponent implements OnInit {
 
       pokemonModificado.nombre= formData.nombre;
       pokemonModificado.imagen = formData.imagen;
+      pokemonModificado.habilidades = formData.habilidades;
+
+      console.debug(pokemonModificado);
 
       this.pokemonService.modificar(pokemonModificado).subscribe( data => {
         console.trace('Pokemon modificado %o . Se reinicia valores', data);
@@ -121,6 +208,7 @@ export class PrivadoComponent implements OnInit {
 
         nuevoPokemon.nombre = nombrePokemonNuevo;
         nuevoPokemon.imagen = imagenPokemonNuevo;
+        nuevoPokemon.habilidades = formData.habilidades;
 
         console.debug('datos nuevoPokemon %o', nuevoPokemon);
 

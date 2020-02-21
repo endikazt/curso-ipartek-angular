@@ -3,7 +3,6 @@ import { Pokemon } from 'src/app/model/pokemon';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { HabilidadService } from 'src/app/services/habilidad.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Habilidad } from 'src/app/model/habilidad';
 import { Mensaje } from 'src/app/model/mensaje';
 
 @Component({

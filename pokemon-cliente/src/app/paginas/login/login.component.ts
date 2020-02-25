@@ -10,44 +10,50 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  formulario : FormGroup;
+  formulario: FormGroup;
 
-  constructor(private _builder : FormBuilder, 
-              private usuarioService: UsuariosService,
-              private router : Router) { 
+  constructor( private router: Router,
+               private builder: FormBuilder,
+               private usuarioService: UsuarioService
+             ) {
 
-    this.formulario = this._builder.group({
+    console.trace('LoginComponent constructor');
 
-      nombre : ['', [Validators.required, Validators.minLength(3),Validators.maxLength(20)]],
-      passwd : ['', [Validators.required, Validators.minLength(5), Validators.maxLength(30)]]
+    // construir formulario
+    this.formulario = this.builder.group({
+
+       // definir los FormControl == inputs [ value, validaciones ]
+      nombre : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100) ]],
+      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8) ]]
 
     });
 
-  }
+
+  }// constructor
 
   ngOnInit() {
-  }
+      console.trace('LoginComponent ngOnInit');
 
-  enviar( values: any) {
+  }// ngOnInit
 
+
+  enviar( values: any ) {
     console.trace('Submit formulario %o', values);
 
     const nombre = values.nombre;
-    const passwd = values.passwd;
-    const uLogeado = this.usuarioService.login(nombre, passwd);
+    const password = values.pass;
+    const uLogeado = this.usuarioService.login(nombre, password);
 
-    if(uLogeado) {
-
-      console.trace("usuario logeado con exito %o", uLogeado);
+    if ( uLogeado ) {
+      console.trace('Usuario logeado con exito %o', uLogeado);
       this.router.navigate(['privado']);
-
     } else {
-      //TODO cambiar alert
-      console.warn("Usuario no loegeado");
+      console.warn('Usuario NO logeado');
+      // TODO cambiar alert
       alert('Por favor prueba de nuevo a logearte');
-
     }
 
-  }
 
-}
+  }// enviar
+
+}// LoginComponent

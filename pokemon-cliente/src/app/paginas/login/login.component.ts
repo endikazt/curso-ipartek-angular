@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor( private router: Router,
                private builder: FormBuilder,
-               private usuarioService: UsuarioService
+               private usuarioService: UsuariosService
              ) {
 
     console.trace('LoginComponent constructor');
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
        // definir los FormControl == inputs [ value, validaciones ]
       nombre : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100) ]],
-      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(8) ]]
+      passwd: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(8) ]]
 
     });
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     console.trace('Submit formulario %o', values);
 
     const nombre = values.nombre;
-    const password = values.pass;
+    const password = values.passwd;
     const uLogeado = this.usuarioService.login(nombre, password);
 
     if ( uLogeado ) {

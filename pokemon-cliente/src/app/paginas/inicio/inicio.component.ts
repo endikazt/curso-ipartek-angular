@@ -19,6 +19,7 @@ export class InicioComponent implements OnInit {
   habilidades : Array<Habilidad>;
   habilidadesFiltro : Array<any>;
   habilidadesFinal : Array<any>;
+  busqueda : any;
 
 
   constructor(private pokemonService: PokemonService, private habilidaService : HabilidadService) {
@@ -27,8 +28,10 @@ export class InicioComponent implements OnInit {
     this.habilidadesFiltro = new Array();
     this.habilidadesFinal = new Array();
     this.pokemonSeleccionado = new Pokemon();
+    this.busqueda = "";
     this.options = [];
     this.mensaje = "Bienvenido a la app de Pokemons."
+
    }
 
   ngOnInit() {

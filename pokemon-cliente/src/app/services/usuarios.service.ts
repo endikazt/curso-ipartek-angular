@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { IUsuarioService } from './IUsuario.service';
 import { Usuario } from '../model/usuario';
 import { HttpClient } from '@angular/common/http';
-import { exists } from 'fs';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -40,7 +39,7 @@ export class UsuariosService{
   login(nombre: string, password: string): Usuario {
     console.trace('UsuarioService login nombre %s password %s', nombre, password);
     const NOMBRE = 'admin';
-    const PASS = 'admin123';
+    const PASS = 'admin';
     let usuarioBuscar: Usuario; // si no enta en el if es "undefined"
 
     if ( NOMBRE === nombre && PASS === password ) {

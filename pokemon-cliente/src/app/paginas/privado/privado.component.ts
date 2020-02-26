@@ -20,6 +20,7 @@ export class PrivadoComponent implements OnInit {
   formulario : FormGroup;
   formHabilidades: FormArray;
   habilidadesDatos: any;
+  habilidadesOriginal: any;
 
 
   constructor(private pokemonService: PokemonService, 
@@ -28,6 +29,7 @@ export class PrivadoComponent implements OnInit {
 
     this.listaPokemon = new Array<Pokemon>();
     this.habilidades = new Array<any>();
+    this.habilidadesOriginal = new Array<any>();
     this.pokemonSeleccionado = new Pokemon();
     this.mensaje = new Mensaje();
     this.mensaje.contenido = "Bienvenido a la seccion de BackOffice de la aplicaccion :)"
@@ -38,7 +40,7 @@ export class PrivadoComponent implements OnInit {
       nombre : new FormControl ('', [Validators.required, Validators.minLength(3),Validators.maxLength(150)]),
       imagen : new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(255)]),
       habilidades : this.builder.array( [], [Validators.required, Validators.minLength(1)])
-    });
+    });    
 
     this.formHabilidades = this.formulario.get('habilidades') as FormArray;
 
@@ -151,7 +153,7 @@ export class PrivadoComponent implements OnInit {
     this.formulario.get('id').setValue(0);
     this.formulario.get('nombre').setValue("");
     this.formulario.get('imagen').setValue("");
-    this.resetFormArray(this.formulario.get('habilidades'))
+    this.resetFormArray(<FormArray>this.formulario.get('habilidades'));
 
   }
 

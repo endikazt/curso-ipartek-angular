@@ -1,9 +1,5 @@
 <div class="row d-flex justify-content-center">
     <div class="col col-4">
-
-        <pre>{{ formulario.value | json }}</pre>             
-        <pre>{{ formulario.status | json }}</pre>  
-
         <form  [formGroup] = "formulario" (ngSubmit)="enviar(formulario.value)">
             <h2 class="mb-4 d-flex justify-content-center"> Iniciar sesion </h2>
             <input class="form-control" type="text" formControlName="nombre" placeholder="Nombre de usuario..."/>
